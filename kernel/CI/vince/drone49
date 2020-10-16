@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
-chat_id="-1001348632957"
+chat_id="-1253394338"
 tanggal=$(TZ=Asia/Jakarta date "+%Y%m%d-%H%M")
 device="vince"
-ZIP_NAME="KryPtoN-${device}-AOSP4.9-${tanggal}.zip"
+ZIP_NAME="Reborn-${device}-AOSP4.9-${tanggal}.zip"
 START=$(date +"%s")
 export LD_LIBRARY_PATH="/root/tools/clang/bin/../lib:$PATH"
 export ARCH=arm64
 export KBUILD_BUILD_USER=root
-export KBUILD_BUILD_HOST=KryPtoNProject
+export KBUILD_BUILD_HOST=RebornProject
 # sticker plox
 function sticker() {
         curl -s -X POST "https://api.telegram.org/bot$token/sendSticker" \
@@ -26,7 +26,7 @@ function sendinfo() {
                         -d chat_id=$chat_id \
                         -d "disable_web_page_preview=true" \
                         -d "parse_mode=html" \
-                        -d text="<b>KryPtoN Kernel 4.9</b> new build is up%0AStarted on <code>DroneCI</code>%0AFor device <b>${device}</b> (Redmi 5 Plus)%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code> (A9/A10)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>$(clang --version | head -n 1 | perl -pe 's/\(https.*?\)//gs' | sed -e 's/  */ /g')</code>%0AStarted on <code>$(TZ=Asia/Jakarta date)</code>%0A<b>DroneCI Status</b> <a href='https://cloud.drone.io/Kry9toN'>here</a>"
+                        -d text="<b>Reborn Kernel 4.9</b> new build is up%0AStarted on <code>DroneCI</code>%0AFor device <b>${device}</b> (Redmi 5 Plus)%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code> (A9/A10)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>$(clang --version | head -n 1 | perl -pe 's/\(https.*?\)//gs' | sed -e 's/  */ /g')</code>%0AStarted on <code>$(TZ=Asia/Jakarta date)</code>%0A<b>DroneCI Status</b> <a href='https://cloud.drone.io/Kry9toN'>here</a>"
 }
 # Push kernel to channel
 function push() {
@@ -84,7 +84,7 @@ compile
 zipping
 END=$(date +"%s")
 DIFF=$(($END - $START))
-wget https://raw.githubusercontent.com/Kry9toN/Scripts/master/kernel/CI/include/webmd
+wget https://raw.githubusercontent.com/IlhamXM/Scripts/master/kernel/CI/include/webmd
 # include webmd
 source webmd
 paste
