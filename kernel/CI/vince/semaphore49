@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 IMAGE=$(pwd)/out/arch/arm64/boot/Image.gz-dtb
 echo "Clone Anykernel"
-git clone -j32 https://github.com/Kry9toN/AnyKernel3 -b vince AnyKernel
+git clone -j32 https://github.com/IlhamXM/AnyKernel3 -b vince AnyKernel
 echo "Done"
-token=$(openssl enc -base64 -d <<< NzE1ODAxNzAwOkFBRW5sWGdsMHA4VjVmOHhIZWZIQzJTTHE4a2lvNlZjUy1jCg==)
-chat_id="-1001348632957"
+token=$(openssl enc -base64 -d <<< 1306680556:AAHpMmNdBuW3XapfVacTnFZw6r7dXomVlIY==)
+chat_id="-1253394338"
 GCC="$(pwd)/gcc/bin/aarch64-linux-gnu-"
 tanggal=$(TZ=Asia/Jakarta date "+%Y%m%d-%H%M")
 START=$(date +"%s")
 export LD_LIBRARY_PATH="/root/clang/bin/../lib:$PATH"xport ARCH=arm64
 export KBUILD_BUILD_USER=root
-export KBUILD_BUILD_HOST=KryPtoNProject
+export KBUILD_BUILD_HOST=RebornProject
 # sticker plox
 function sticker() {
         curl -s -X POST "https://api.telegram.org/bot$token/sendSticker" \
@@ -28,12 +28,12 @@ function sendinfo() {
                         -d chat_id=$chat_id \
                         -d "disable_web_page_preview=true" \
                         -d "parse_mode=html" \
-                        -d text="<b>KryPtoN Kernel 4.9</b> new build is up%0AStarted on <code>SemaphoreCI</code>%0AFor device <b>Vince</b> (Redmi 5 Plus)%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code> (Android 9.0/Pie)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>$(clang --version | head -n 1 | perl -pe 's/\(https.*?\)//gs' | sed -e 's/  */ /g')</code>%0AStarted on <code>$(TZ=Asia/Jakarta date)</code>%0A<b>SemaphoreCI Status</b> <a href='https://kry9ton.semaphoreci.com/workflows/${SEMAPHORE_WORKFLOW_ID}'>here</a>"
+                        -d text="<b>Reborn Kernel 4.9</b> new build is up%0AStarted on <code>SemaphoreCI</code>%0AFor device <b>Vince</b> (Redmi 5 Plus)%0Abranch <code>$(git rev-parse --abbrev-ref HEAD)</code> (Android 9.0/Pie)%0AUnder commit <code>$(git log --pretty=format:'"%h : %s"' -1)</code>%0AUsing compiler: <code>$(clang --version | head -n 1 | perl -pe 's/\(https.*?\)//gs' | sed -e 's/  */ /g')</code>%0AStarted on <code>$(TZ=Asia/Jakarta date)</code>%0A<b>SemaphoreCI Status</b> <a href='https://kry9ton.semaphoreci.com/workflows/${SEMAPHORE_WORKFLOW_ID}'>here</a>"
 }
 # Push kernel to channel
 function push() {
         cd AnyKernel
-	ZIP=$(echo KryPtoN*.zip)
+	ZIP=$(echo Reborn*.zip)
 	curl -F document=@$ZIP "https://api.telegram.org/bot$token/sendDocument" \
 			-F chat_id="$chat_id" \
 			-F "disable_web_page_preview=true" \
@@ -77,7 +77,7 @@ function compile() {
 # Zipping
 function zipping() {
         cd AnyKernel
-        zip -r9 KryPtoN-AOSP4.9-${tanggal}.zip *
+        zip -r9 Reborn-AOSP4.9-${tanggal}.zip *
         cd ..
 }
 sendinfo
